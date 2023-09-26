@@ -7,9 +7,7 @@ const Tasks = props => {
   return (
     <li className="task-item">
       <p className="task">{task}</p>
-      <button type="button" className="tagBtn">
-        {tag}
-      </button>
+      <p className="tagBtn">{tag}</p>
     </li>
   )
 }

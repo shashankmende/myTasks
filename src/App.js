@@ -10,12 +10,10 @@ const tagsList = [
   {
     optionId: 'HEALTH',
     displayText: 'Health',
-    isActive: false,
   },
   {
     optionId: 'EDUCATION',
     displayText: 'Education',
-    isActive: false,
   },
   {
     optionId: 'ENTERTAINMENT',
@@ -24,50 +22,43 @@ const tagsList = [
   {
     optionId: 'SPORTS',
     displayText: 'Sports',
-    isActive: false,
   },
   {
     optionId: 'TRAVEL',
     displayText: 'Travel',
-    isActive: false,
   },
   {
     optionId: 'OTHERS',
     displayText: 'Others',
-    isActive: false,
   },
 ]
 
 // Replace your code here
-let taskList = []
+const taskList = []
 
 class App extends Component {
-  state = {option: 'HEALTH', userInput: '', List: tagsList}
+  state = {
+    activeTagId: '',
+    option: 'HEALTH',
+    userInput: '',
+    List: tagsList,
+    filteredList: [],
+  }
 
   onClickTagItem = (id, active) => {
-    const {option, userInput} = this.state
-    const initialList = taskList
-
     if (active === false) {
-      taskList = taskList.filter(each => each.tag === id)
+      console.log('isClicked', active)
+      this.setState({
+        activeTagId: tagsList.filter(each => each.optionId === id)[0].optionId,
+        filteredList: taskList.filter(each => each.tag === id),
+      })
     } else {
-      taskList = initialList
+      console.log('else block')
+      this.setState({
+        activeTagId: '',
+        filteredList: taskList,
+      })
     }
-
-    console.log('tasks list =', taskList)
-
-    const index = tagsList.findIndex(each => {
-      if (each.optionId === id) {
-        return true
-      }
-      return false
-    })
-
-    tagsList[index].isActive = !active
-
-    this.setState({
-      List: tagsList,
-    })
   }
 
   onChangeInput = event => {
@@ -84,9 +75,9 @@ class App extends Component {
     })
   }
 
-  onClickAddBtn = () => {
+  onClickAddBtn = event => {
     const {option, userInput} = this.state
-
+    console.log('event', event.target)
     const newObj = {
       id: uuidv4(),
       task: userInput,
@@ -97,12 +88,13 @@ class App extends Component {
 
     this.setState({
       userInput: '',
+      filteredList: taskList,
     })
   }
 
   render() {
-    const {List, userInput} = this.state
-    console.log('tasks list=', taskList)
+    const {List, userInput, activeTagId, filteredList} = this.state
+    console.log('tasks list=', filteredList)
 
     return (
       <div className="bg-container">
@@ -124,7 +116,7 @@ class App extends Component {
             </div>
             <div className="input-container">
               <label htmlFor="tags" className="task-label">
-                Task
+                Tags
               </label>
               <select
                 className="input"
@@ -156,15 +148,18 @@ class App extends Component {
                 item={each}
                 key={each.optionId}
                 onClickTagItem={this.onClickTagItem}
+                isClicked={activeTagId === each.optionId}
               />
             ))}
           </ul>
 
           <h1 className="task-label">Tasks</h1>
           <ul className="task-container">
-            {taskList.map(each => (
-              <Tasks key={each.id} taskItem={each} />
-            ))}
+            {filteredList.length === 0 ? (
+              <p className="no-task">No Tasks Added Yet</p>
+            ) : (
+              filteredList.map(each => <Tasks key={each.id} taskItem={each} />)
+            )}
           </ul>
         </div>
       </div>

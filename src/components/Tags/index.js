@@ -1,12 +1,12 @@
 import './index.css'
 
 const Tags = props => {
-  const {item, onClickTagItem} = props
-  const {optionId, displayText, isActive} = item
-  const activeCls = isActive ? 'active' : ''
+  const {item, onClickTagItem, isClicked} = props
+  const {optionId, displayText} = item
+  const activeCls = isClicked ? 'active' : ''
 
   const onClickTag = () => {
-    onClickTagItem(optionId, isActive)
+    onClickTagItem(optionId, isClicked)
   }
 
   return (
