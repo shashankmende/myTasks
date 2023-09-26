@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bg-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+.creating-task-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #1a171d;
+  width: 40%;
+  min-height: 100vh;
+  padding: 40px;
+}
+.task-heading {
+  font-family: 'Roboto';
+  color: #f3aa4e;
+}
+.form-container {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.task-label {
+  color: #ffffff;
+  font-family: 'Roboto';
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.input {
+  padding: 10px;
+  width: 100%;
+  border-radius: 7px;
+}
+*:focus {
+  outline: none;
+}
+.addTaskBtn {
+  background-color: #f3aa4e;
+  padding: 10px;
+  color: white;
+  font-family: 'Roboto';
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  align-self: center;
+  width: 100px;
+}
+.tags-and-task-container {
+  background-color: #000000;
+  padding: 30px;
+  width: 60%;
+  min-height: 100vh;
+}
+
+.tags-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  justify-content: space-between;
+}
+.task-container {
+  display: flex;
+  flex-direction: column;
+}

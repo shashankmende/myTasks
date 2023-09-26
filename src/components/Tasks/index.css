@@ -1,0 +1,23 @@
+.task-item {
+  list-style-type: none;
+  background-color: #323f4b;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.tagBtn {
+  background-color: #f3aa4e;
+  padding: 10px;
+  color: black;
+  border-radius: 15px;
+  border: none;
+  font-weight: bold;
+}
+.task {
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+}
